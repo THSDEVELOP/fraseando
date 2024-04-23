@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "784739648185",
+    "project_id": "fraseando-762a0",
+    "storage_bucket": "fraseando-762a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784739648185:android:1c599e40243590559a9168",
+        "android_client_info": {
+          "package_name": "com.fraseando.br"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "784739648185-qrrhl44s2c672eiajt5csa62aaq8uou2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8qIMCXrC9g_neZOKwoMPQkLFuWphPhtc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "784739648185-qrrhl44s2c672eiajt5csa62aaq8uou2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
