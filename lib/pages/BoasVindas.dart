@@ -1,12 +1,17 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:fraseando/pages/PageLogin.dart';
-import 'package:fraseando/pages/Registro.dart';
+import 'package:fraseando/pages/pageLogin.dart';
+import 'Register.dart';
 
-class BoasVindas extends StatelessWidget {
+class BoasVindas extends StatefulWidget {
   const BoasVindas({super.key});
 
+  @override
+  State<BoasVindas> createState() => _BoasVindasState();
+}
+
+class _BoasVindasState extends State<BoasVindas> {
   double calculateTopMargin(BuildContext context) {
     return MediaQuery.of(context).size.width * 0.10 * 1.1;
   }
@@ -104,7 +109,7 @@ class BoasVindas extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const Registro()));
+                          builder: (context) => const Register()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xff00a41b),

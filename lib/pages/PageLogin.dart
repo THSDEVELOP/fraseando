@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fraseando/components/decorationPassword.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+import '../components/decorationRegister.dart';
+import 'Register.dart';
 
 class PageLogin extends StatefulWidget {
   const PageLogin({Key? key}) : super(key: key);
@@ -23,7 +27,7 @@ class _PageLoginState extends State<PageLogin> {
             colors: [
               Colors.blue,
               Colors.lightBlue,
-              Color.fromARGB(255, 159, 241, 255),
+              Color.fromRGBO(26, 186, 215, 1),
             ],
           ),
         ),
@@ -43,7 +47,7 @@ class _PageLoginState extends State<PageLogin> {
                     Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 22, 162, 244),
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: const [
                           BoxShadow(
@@ -57,45 +61,31 @@ class _PageLoginState extends State<PageLogin> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           TextField(
-                            decoration: InputDecoration(
-                              hintText: "Email ou Número de Telefone",
-                              hintStyle: TextStyle(color: Colors.grey),
-                              prefixIcon: const Icon(
-                                Icons.person,
-                                color: Colors.black,
-                              ),
-                              border: InputBorder.none,
-                            ),
+                              decoration: getAuthenticationInputDecoration(
+                                  "Email ou usuario")),
+                          SizedBox(
+                            height: 10,
                           ),
-                          const Divider(
-                              color: Color.fromARGB(255, 202, 201, 201)),
-                          TextField(
-                            obscureText: isObscureText,
-                            onChanged: (value) {},
-                            decoration: InputDecoration(
-                              hintText: "Senha",
-                              hintStyle: const TextStyle(color: Colors.grey),
-                              prefixIcon: const Icon(
-                                Icons.lock,
-                                color: Colors.black,
-                              ),
-                              suffixIcon: InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    isObscureText = !isObscureText;
-                                  });
-                                },
-                                child: Icon(
-                                  isObscureText
-                                      ? Icons.visibility_off
-                                      : Icons.visibility,
-                                  color: Colors.black87,
+                          TextFormField(
+                              obscureText: isObscureText,
+                              onChanged: (value) {},
+                              decoration: getPasswordInputDecoration(
+                                "Senha",
+                                suffixIcon: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      isObscureText = !isObscureText;
+                                    });
+                                  },
+                                  child: Icon(
+                                    isObscureText
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                    color: Colors.black87,
+                                  ),
                                 ),
-                              ),
-                              border: InputBorder.none,
-                            ),
-                          ),
-                          const SizedBox(height: 20.0),
+                              )),
+                          const SizedBox(height: 30),
                           ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
@@ -127,7 +117,8 @@ class _PageLoginState extends State<PageLogin> {
                       "Continue com sua mídia social",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.bold),
+                          color: Color.fromARGB(255, 241, 240, 240),
+                          fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 20.0),
                     Row(
@@ -153,13 +144,14 @@ class _PageLoginState extends State<PageLogin> {
                             signInWithGoogle();
                           },
                           style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.all(15),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 25, vertical: 15),
                             backgroundColor:
                                 const Color.fromARGB(255, 168, 12, 12),
                             textStyle: const TextStyle(fontSize: 18),
                           ),
                           child: const Text(
-                            "Gmail",
+                            "Google",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
@@ -167,6 +159,21 @@ class _PageLoginState extends State<PageLogin> {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Register()));
+                        },
+                        child: Text(
+                          "Cadastre-se aqui!",
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 241, 240, 240)),
+                        ))
                   ],
                 ),
               ),
