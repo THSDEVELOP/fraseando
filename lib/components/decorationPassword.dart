@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 
-InputDecoration getPasswordInputDecoration(String label,
-    {required InkWell suffixIcon}) {
+InputDecoration getPasswordInputDecoration(String label, {Widget? suffixIcon}) {
   return InputDecoration(
+    enabled: true,
     hintText: label,
     hintStyle: const TextStyle(color: Colors.grey),
     fillColor: Colors.white,
@@ -11,6 +11,7 @@ InputDecoration getPasswordInputDecoration(String label,
       Icons.lock,
       color: Colors.black,
     ),
+    suffixIcon: suffixIcon,
     border: OutlineInputBorder(borderRadius: BorderRadius.circular(40)),
     enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(40),

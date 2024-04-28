@@ -67,24 +67,31 @@ class _PageLoginState extends State<PageLogin> {
                             height: 10,
                           ),
                           TextFormField(
-                              obscureText: isObscureText,
-                              onChanged: (value) {},
-                              decoration: getPasswordInputDecoration(
-                                "Senha",
-                                suffixIcon: InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      isObscureText = !isObscureText;
-                                    });
-                                  },
-                                  child: Icon(
-                                    isObscureText
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: Colors.black87,
-                                  ),
+                            obscureText: isObscureText,
+                            onChanged: (value) {},
+                            onTap: () {
+                              setState(() {
+                                isObscureText = !isObscureText;
+                              });
+                            },
+                            decoration: getPasswordInputDecoration(
+                              "Senha",
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    isObscureText = !isObscureText;
+                                  });
+                                },
+                                icon: Icon(
+                                  isObscureText
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: Colors.black87,
                                 ),
-                              )),
+                              ),
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
                           const SizedBox(height: 30),
                           ElevatedButton(
                             onPressed: () {},

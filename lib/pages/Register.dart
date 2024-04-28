@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fraseando/components/decorationRegister.dart';
 
+import 'pageLogin.dart';
+
 class Register extends StatefulWidget {
   const Register({super.key});
 
@@ -9,7 +11,8 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  bool isObscureText = true;
+  bool isObscureText = false;
+  bool isObscureconfirmText = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,14 +79,6 @@ class _RegisterState extends State<Register> {
                         height: 10,
                       ),
                       TextFormField(
-                          obscureText: true,
-                          onChanged: (value) {},
-                          decoration:
-                              getPasswordInputRegisterDecoration("Senha")),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
                         obscureText: isObscureText,
                         onChanged: (value) {},
                         onTap: () {
@@ -92,7 +87,50 @@ class _RegisterState extends State<Register> {
                           });
                         },
                         decoration: getPasswordInputRegisterDecoration(
-                            "Confirme sua senha"),
+                          "Senha",
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                isObscureText = !isObscureText;
+                              });
+                            },
+                            icon: Icon(
+                              isObscureText
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ),
+                        textAlign: TextAlign.start,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        obscureText: isObscureconfirmText,
+                        onChanged: (value) {},
+                        onTap: () {
+                          setState(() {
+                            isObscureconfirmText = !isObscureconfirmText;
+                          });
+                        },
+                        decoration: getConfirmPasswordInputRegisterDecoration(
+                          "Confirme sua senha",
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                isObscureconfirmText = !isObscureconfirmText;
+                              });
+                            },
+                            icon: Icon(
+                              isObscureconfirmText
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ),
                         textAlign: TextAlign.start,
                       ),
                       SizedBox(
@@ -106,6 +144,18 @@ class _RegisterState extends State<Register> {
                           child: const Text(
                             "Cadastrar",
                             style: TextStyle(color: Colors.white),
+                          )),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const PageLogin()));
+                          },
+                          child: Text(
+                            "Já tem um login? clique aqui!",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 241, 240, 240)),
                           ))
                     ],
                   ),
