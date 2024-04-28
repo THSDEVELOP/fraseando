@@ -1,3 +1,8 @@
+//Nessa tela basicamente foi feito o frontend com alguns validadores.
+//Ainda falta implementar algumas coisas e tratar alguns possíveis erros.
+
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:fraseando/components/decorationRegister.dart';
 
@@ -13,13 +18,15 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   bool isObscureText = false;
   bool isObscureconfirmText = false;
+  final _formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -33,12 +40,13 @@ class _RegisterState extends State<Register> {
         child: Padding(
           padding: const EdgeInsets.all(30.0),
           child: Form(
+            key: _formkey,
             child: Center(
               child: SingleChildScrollView(
                 child: Container(
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 22, 162, 244),
+                    color: const Color.fromARGB(255, 22, 162, 244),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(
@@ -56,26 +64,47 @@ class _RegisterState extends State<Register> {
                         'assets/bebeBaleia.png',
                         height: 70,
                       ),
-                      Text(
+                      const Text(
                         "Cadastre-se no Fraseando",
                         style: TextStyle(
                             fontSize: 23, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       TextFormField(
                         decoration: getAuthenticationInputDecoration("Nome:"),
+                        validator: (value) {
+                          if (value == null) {
+                            return "O campo nome não pode ficar vazio.";
+                          }
+                          if (value.length < 4) {
+                            return "Seu nome deve ter pelo menos 4 caracteres.";
+                          }
+                          return null;
+                        },
                         textAlign: TextAlign.start,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextFormField(
                         decoration: getAuthenticationInputDecoration("Email:"),
+                        validator: (value) {
+                          if (value == null) {
+                            return "O campo email não pode ficar vazio.";
+                          }
+                          if (value.length < 8) {
+                            return "O email é muito curto.";
+                          }
+                          if (!value.contains("@")) {
+                            return "O email não é valido.";
+                          }
+                          return null;
+                        },
                         textAlign: TextAlign.start,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextFormField(
@@ -102,9 +131,18 @@ class _RegisterState extends State<Register> {
                             ),
                           ),
                         ),
+                        validator: (value) {
+                          if (value == null) {
+                            return "É obrigatório o uso de senha para sua segurança.";
+                          }
+                          if (value.length < 8) {
+                            return "Sua senha deve conter ao menos 8 caracteres.";
+                          }
+                          return null;
+                        },
                         textAlign: TextAlign.start,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextFormField(
@@ -131,16 +169,28 @@ class _RegisterState extends State<Register> {
                             ),
                           ),
                         ),
+                        //validador apenas de simulação
+                        validator: (value) {
+                          if (value == null) {
+                            return "Confirme a senha para sua segurança.";
+                          }
+                          if (value.length < 8) {
+                            return "Suas senhas devem ser iguais.";
+                          }
+                          return null;
+                        },
                         textAlign: TextAlign.start,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       ElevatedButton(
-                          style: ButtonStyle(
+                          style: const ButtonStyle(
                               backgroundColor:
                                   MaterialStatePropertyAll(Colors.blue)),
-                          onPressed: () {},
+                          onPressed: () {
+                            botaoPrincipalClicado();
+                          },
                           child: const Text(
                             "Cadastrar",
                             style: TextStyle(color: Colors.white),
@@ -152,7 +202,7 @@ class _RegisterState extends State<Register> {
                                 MaterialPageRoute(
                                     builder: (context) => const PageLogin()));
                           },
-                          child: Text(
+                          child: const Text(
                             "Já tem um login? clique aqui!",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 241, 240, 240)),
@@ -166,5 +216,13 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
+  }
+
+  botaoPrincipalClicado() {
+    if (_formkey.currentState!.validate()) {
+      print("Form Válido");
+    } else {
+      print("Form Inválido");
+    }
   }
 }

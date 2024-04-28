@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fraseando/components/decorationPassword.dart';
@@ -7,7 +9,7 @@ import '../components/decorationRegister.dart';
 import 'Register.dart';
 
 class PageLogin extends StatefulWidget {
-  const PageLogin({Key? key}) : super(key: key);
+  const PageLogin({super.key});
 
   @override
   State<PageLogin> createState() => _PageLoginState();
@@ -20,7 +22,7 @@ class _PageLoginState extends State<PageLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -47,7 +49,7 @@ class _PageLoginState extends State<PageLogin> {
                     Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 22, 162, 244),
+                        color: const Color.fromARGB(255, 22, 162, 244),
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: const [
                           BoxShadow(
@@ -63,7 +65,7 @@ class _PageLoginState extends State<PageLogin> {
                           TextField(
                               decoration: getAuthenticationInputDecoration(
                                   "Email ou usuario")),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           TextFormField(
@@ -109,11 +111,11 @@ class _PageLoginState extends State<PageLogin> {
                             ),
                           ),
                           const SizedBox(height: 20.0),
-                          Align(
+                          const Align(
                             alignment: Alignment.centerRight,
                             child: Text(
                               "Esqueceu a Senha?",
-                              style: TextStyle(color: Colors.grey),
+                              style: TextStyle(color: Colors.white),
                             ),
                           ),
                         ],
@@ -166,7 +168,7 @@ class _PageLoginState extends State<PageLogin> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextButton(
@@ -176,7 +178,7 @@ class _PageLoginState extends State<PageLogin> {
                               MaterialPageRoute(
                                   builder: (context) => const Register()));
                         },
-                        child: Text(
+                        child: const Text(
                           "Cadastre-se aqui!",
                           style: TextStyle(
                               color: Color.fromARGB(255, 241, 240, 240)),
