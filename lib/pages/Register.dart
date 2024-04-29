@@ -5,7 +5,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:fraseando/components/decorationRegister.dart';
+import 'package:fraseando/components/snackbar.dart';
 
+import '../servicos/autentication.dart';
 import 'pageLogin.dart';
 
 class Register extends StatefulWidget {
@@ -19,6 +21,13 @@ class _RegisterState extends State<Register> {
   bool isObscureText = false;
   bool isObscureconfirmText = false;
   final _formkey = GlobalKey<FormState>();
+
+  TextEditingController _nomeController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _senhaController = TextEditingController();
+  TextEditingController _confirmaSenhaController = TextEditingController();
+
+  final AutenticacaoServico _autentServico = AutenticacaoServico();
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +82,7 @@ class _RegisterState extends State<Register> {
                         height: 30,
                       ),
                       TextFormField(
+                        controller: _nomeController,
                         decoration: getAuthenticationInputDecoration("Nome:"),
                         validator: (value) {
                           if (value == null) {
@@ -89,6 +99,7 @@ class _RegisterState extends State<Register> {
                         height: 10,
                       ),
                       TextFormField(
+                        controller: _emailController,
                         decoration: getAuthenticationInputDecoration("Email:"),
                         validator: (value) {
                           if (value == null) {
@@ -115,6 +126,7 @@ class _RegisterState extends State<Register> {
                             isObscureText = !isObscureText;
                           });
                         },
+                        controller: _senhaController,
                         decoration: getPasswordInputRegisterDecoration(
                           "Senha",
                           suffixIcon: IconButton(
@@ -153,6 +165,7 @@ class _RegisterState extends State<Register> {
                             isObscureconfirmText = !isObscureconfirmText;
                           });
                         },
+                        controller: _confirmaSenhaController,
                         decoration: getConfirmPasswordInputRegisterDecoration(
                           "Confirme sua senha",
                           suffixIcon: IconButton(
@@ -189,7 +202,7 @@ class _RegisterState extends State<Register> {
                               backgroundColor:
                                   MaterialStatePropertyAll(Colors.blue)),
                           onPressed: () {
-                            botaoPrincipalClicado();
+                            botaoCadastrarClicado();
                           },
                           child: const Text(
                             "Cadastrar",
@@ -218,9 +231,26 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  botaoPrincipalClicado() {
+  botaoCadastrarClicado() {
+    String nome = _nomeController.text;
+    String email = _emailController.text;
+    String senha = _senhaController.text;
     if (_formkey.currentState!.validate()) {
-      print("Form Válido");
+      _autentServico
+          .cadastrarUsuario(nome: nome, email: email, senha: senha)
+          .then((String? erro) {
+        if (erro != null) {
+          //voltou com erro
+          mostrarSnackbar(context: context, texto: erro);
+        } else {
+          //parece que deu bom
+          mostrarSnackbar(
+            context: context,
+            texto: "Agora você faz parte do Fraseando, seja bem vindo",
+            isErro: false,
+          );
+        }
+      });
     } else {
       print("Form Inválido");
     }

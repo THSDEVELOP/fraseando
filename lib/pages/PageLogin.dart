@@ -3,6 +3,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fraseando/components/decorationPassword.dart';
+import 'package:fraseando/components/snackbar.dart';
+import 'package:fraseando/servicos/autentication.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../components/decorationRegister.dart';
@@ -17,6 +19,12 @@ class PageLogin extends StatefulWidget {
 
 class _PageLoginState extends State<PageLogin> {
   bool isObscureText = true;
+  final _formkey = GlobalKey<FormState>();
+
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _senhaController = TextEditingController();
+
+  AutenticacaoServico _autentServico = AutenticacaoServico();
 
   @override
   Widget build(BuildContext context) {
@@ -59,66 +67,96 @@ class _PageLoginState extends State<PageLogin> {
                           ),
                         ],
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          TextField(
-                              decoration: getAuthenticationInputDecoration(
-                                  "Email ou usuario")),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(
-                            obscureText: isObscureText,
-                            onChanged: (value) {},
-                            onTap: () {
-                              setState(() {
-                                isObscureText = !isObscureText;
-                              });
-                            },
-                            decoration: getPasswordInputDecoration(
-                              "Senha",
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    isObscureText = !isObscureText;
-                                  });
-                                },
-                                icon: Icon(
-                                  isObscureText
-                                      ? Icons.visibility_off
-                                      : Icons.visibility,
-                                  color: Colors.black87,
+                      child: Form(
+                        key: _formkey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            TextFormField(
+                              controller: _emailController,
+                              decoration:
+                                  getAuthenticationInputDecoration("Email:"),
+                              validator: (value) {
+                                if (value == null) {
+                                  return "O campo email não pode ficar vazio.";
+                                }
+                                if (value.length < 8) {
+                                  return "O email é muito curto.";
+                                }
+                                if (!value.contains("@")) {
+                                  return "O email não é valido.";
+                                }
+                                return null;
+                              },
+                              textAlign: TextAlign.start,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            TextFormField(
+                              obscureText: isObscureText,
+                              onChanged: (value) {},
+                              onTap: () {
+                                setState(() {
+                                  isObscureText = !isObscureText;
+                                });
+                              },
+                              controller: _senhaController,
+                              decoration: getPasswordInputDecoration(
+                                "Senha",
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      isObscureText = !isObscureText;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    isObscureText
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                              ),
+                              validator: (value) {
+                                if (value == null) {
+                                  return "É obrigatório o uso de senha para sua segurança.";
+                                }
+                                if (value.length < 8) {
+                                  return "Sua senha deve conter ao menos 8 caracteres.";
+                                }
+                                return null;
+                              },
+                              textAlign: TextAlign.start,
+                            ),
+                            const SizedBox(height: 30),
+                            ElevatedButton(
+                              onPressed: () {
+                                botaoLoginClicado();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.all(15),
+                                backgroundColor: Colors.blue,
+                                textStyle: const TextStyle(fontSize: 18),
+                              ),
+                              child: const Text(
+                                "Login",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
-                            textAlign: TextAlign.start,
-                          ),
-                          const SizedBox(height: 30),
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.all(15),
-                              backgroundColor: Colors.blue,
-                              textStyle: const TextStyle(fontSize: 18),
-                            ),
-                            child: const Text(
-                              "Login",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                            const SizedBox(height: 20.0),
+                            const Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                "Esqueceu a Senha?",
+                                style: TextStyle(color: Colors.white),
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 20.0),
-                          const Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              "Esqueceu a Senha?",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20.0),
@@ -206,5 +244,21 @@ class _PageLoginState extends State<PageLogin> {
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
     print(userCredential.user?.displayName);
+  }
+
+  botaoLoginClicado() {
+    String email = _emailController.text;
+    String senha = _senhaController.text;
+    if (_formkey.currentState!.validate()) {
+      _autentServico
+          .logarUsuarios(email: email, senha: senha)
+          .then((String? erro) {
+        if (erro != null) {
+          mostrarSnackbar(context: context, texto: erro);
+        }
+      });
+    } else {
+      return "Usuario ou senha inválidos";
+    }
   }
 }
