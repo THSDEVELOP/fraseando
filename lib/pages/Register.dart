@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:fraseando/components/decorationRegister.dart';
 import 'package:fraseando/components/snackbar.dart';
+import 'package:fraseando/pages/mainPage.dart';
 
 import '../servicos/autentication.dart';
 import 'pageLogin.dart';
@@ -249,6 +250,8 @@ class _RegisterState extends State<Register> {
             texto: "Agora você faz parte do Fraseando, seja bem vindo",
             isErro: false,
           );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const MainPage()));
         }
       });
     } else {

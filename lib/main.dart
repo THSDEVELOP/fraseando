@@ -45,9 +45,9 @@ class _RouterTelaState extends State<RouterTela> {
       stream: FirebaseAuth.instance.userChanges(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return MainPage();
+          return const MainPage();
         } else {
-          return PageLogin();
+          return const PageLogin();
         }
       },
     );

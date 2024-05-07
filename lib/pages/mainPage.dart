@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fraseando/pages/pageLogin.dart';
 import 'package:fraseando/servicos/autentication.dart';
 
 class MainPage extends StatefulWidget {
@@ -23,6 +24,8 @@ class _MainPageState extends State<MainPage> {
               title: Text("Sair"),
               onTap: () {
                 AutenticacaoServico().deslogar();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const PageLogin()));
               },
             )
           ],
