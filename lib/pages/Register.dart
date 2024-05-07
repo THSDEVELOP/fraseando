@@ -122,11 +122,6 @@ class _RegisterState extends State<Register> {
                       TextFormField(
                         obscureText: isObscureText,
                         onChanged: (value) {},
-                        onTap: () {
-                          setState(() {
-                            isObscureText = !isObscureText;
-                          });
-                        },
                         controller: _senhaController,
                         decoration: getPasswordInputRegisterDecoration(
                           "Senha",
@@ -161,11 +156,6 @@ class _RegisterState extends State<Register> {
                       TextFormField(
                         obscureText: isObscureconfirmText,
                         onChanged: (value) {},
-                        onTap: () {
-                          setState(() {
-                            isObscureconfirmText = !isObscureconfirmText;
-                          });
-                        },
                         controller: _confirmaSenhaController,
                         decoration: getConfirmPasswordInputRegisterDecoration(
                           "Confirme sua senha",

@@ -96,11 +96,6 @@ class _PageLoginState extends State<PageLogin> {
                             TextFormField(
                               obscureText: isObscureText,
                               onChanged: (value) {},
-                              onTap: () {
-                                setState(() {
-                                  isObscureText = !isObscureText;
-                                });
-                              },
                               controller: _senhaController,
                               decoration: getPasswordInputDecoration(
                                 "Senha",
