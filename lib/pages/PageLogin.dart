@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fraseando/components/decorationPassword.dart';
 import 'package:fraseando/components/snackbar.dart';
+import 'package:fraseando/pages/mainPage.dart';
 import 'package:fraseando/servicos/autentication.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -183,7 +184,7 @@ class _PageLoginState extends State<PageLogin> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            signInWithGoogle();
+                            signInWithGoogle(context);
                           },
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(
@@ -226,7 +227,7 @@ class _PageLoginState extends State<PageLogin> {
     );
   }
 
-  signInWithGoogle() async {
+  signInWithGoogle(BuildContext context) async {
     GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
@@ -239,6 +240,12 @@ class _PageLoginState extends State<PageLogin> {
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
     print(userCredential.user?.displayName);
+
+    // Após o login bem-sucedido, navegue para a página principal
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => MyHomePage()),
+    );
   }
 
   botaoLoginClicado() {

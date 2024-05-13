@@ -23,10 +23,11 @@ class _RegisterState extends State<Register> {
   bool isObscureconfirmText = false;
   final _formkey = GlobalKey<FormState>();
 
-  TextEditingController _nomeController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _senhaController = TextEditingController();
-  TextEditingController _confirmaSenhaController = TextEditingController();
+  final TextEditingController _nomeController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _senhaController = TextEditingController();
+  final TextEditingController _confirmaSenhaController =
+      TextEditingController();
 
   final AutenticacaoServico _autentServico = AutenticacaoServico();
 
@@ -240,8 +241,8 @@ class _RegisterState extends State<Register> {
             texto: "Agora você faz parte do Fraseando, seja bem vindo",
             isErro: false,
           );
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const MainPage()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => MyHomePage()));
         }
       });
     } else {
