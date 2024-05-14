@@ -244,7 +244,7 @@ class _PageLoginState extends State<PageLogin> {
     // Após o login bem-sucedido, navegue para a página principal
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => MyHomePage()),
+      MaterialPageRoute(builder: (context) => const MyHomePage()),
     );
   }
 

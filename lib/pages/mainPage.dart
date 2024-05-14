@@ -3,6 +3,8 @@ import 'package:fraseando/pages/pageLogin.dart';
 import 'package:fraseando/servicos/autentication.dart';
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
