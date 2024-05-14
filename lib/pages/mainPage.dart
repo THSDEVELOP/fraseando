@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fraseando/pages/pageLogin.dart';
 import 'package:fraseando/servicos/autentication.dart';
 
+import 'alertas.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -25,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Widget _buildListItem(String title, IconData icon) {
+  Widget _buildListItem(String title, String subtitle, IconData icon) {
     return GestureDetector(
       onVerticalDragUpdate: (details) {
         if (details.delta.dy < -10) {
@@ -38,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
         }
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           decoration: BoxDecoration(
@@ -48,19 +50,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 : BorderRadius.circular(20),
           ),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            heightFactor: 1.8,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                const SizedBox(width: 40),
                 Icon(
                   icon,
                   size: 60,
                   color: Colors.blueGrey,
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  title,
-                  style: const TextStyle(fontSize: 24),
-                  textAlign: TextAlign.center,
+                const SizedBox(width: 40),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(fontSize: 24),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      subtitle,
+                      style: const TextStyle(fontSize: 12),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -74,15 +88,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100.0),
+        preferredSize: const Size.fromHeight(60.0),
         child: AppBar(
-          backgroundColor: Colors.lightBlueAccent,
+          backgroundColor: Colors.blue,
           centerTitle: true,
           title: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsets.only(bottom: 8.0),
+                padding: EdgeInsets.only(right: 40.0),
                 child: Text(
                   "Bem-vindo",
                   style: TextStyle(
@@ -117,27 +131,23 @@ class _MyHomePageState extends State<MyHomePage> {
         shrinkWrap: true,
         padding: const EdgeInsets.symmetric(vertical: 20.0),
         children: [
-          _buildListItem("Emoções", Icons.sentiment_satisfied),
+          _buildListItem("Emoções", "Como você está se sentindo hoje?",
+              Icons.sentiment_satisfied),
           const SizedBox(height: 20),
-          _buildListItem("Tarefas", Icons.done),
+          _buildListItem(
+              "Tarefas", "Confira suas tarefas de hoje!", Icons.done),
           const SizedBox(height: 20),
-          _buildListItem("Necessidades", Icons.lightbulb_outline),
+          _buildListItem("Necessidades", "Está precisando de algo?",
+              Icons.lightbulb_outline),
         ],
       ),
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomAppBar(
-        color: Colors.grey[300],
+        height: 60,
+        color: Colors.blue,
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Positioned(
-              bottom: 0,
-              child: Container(
-                height: 60,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.grey[300],
-              ),
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -159,7 +169,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 IconButton(
                   icon: const Icon(Icons.notifications),
-                  onPressed: () => _onItemTapped(4),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AlertasFraseando()));
+                  },
                 ),
               ],
             ),
