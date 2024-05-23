@@ -1,8 +1,13 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:fraseando/pages/pageLogin.dart';
-import 'package:fraseando/servicos/autentication.dart';
+import 'package:fraseando/pages/subPages/Necessidades.dart';
+import 'package:page_transition/page_transition.dart';
 
-import 'alertas.dart';
+import '../components/navigateToPage.dart';
+import '../servicos/autentication.dart';
+import 'subPages/alertas.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -90,33 +95,20 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60.0),
         child: AppBar(
-          backgroundColor: Colors.blue,
-          centerTitle: true,
-          title: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(right: 40.0),
-                child: Text(
-                  "Bem-vindo",
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontFamily: 'Pacifico',
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+            backgroundColor: Colors.blue,
+            iconTheme: const IconThemeData(color: Colors.white)),
       ),
       drawer: Drawer(
+        width: 200,
+        backgroundColor: Colors.blue,
         child: ListView(
           children: [
             ListTile(
-              leading: Icon(Icons.logout),
-              title: Text("Sair"),
+              leading: const Icon(Icons.logout, color: Colors.white),
+              title: const Text(
+                "Sair",
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 AutenticacaoServico().deslogar();
                 Navigator.push(context,
@@ -137,11 +129,16 @@ class _MyHomePageState extends State<MyHomePage> {
           _buildListItem(
               "Tarefas", "Confira suas tarefas de hoje!", Icons.done),
           const SizedBox(height: 20),
-          _buildListItem("Necessidades", "Está precisando de algo?",
-              Icons.lightbulb_outline),
+          InkWell(
+            onTap: () {
+              navigateToPage(context, const NecessidadesPage());
+            },
+            child: _buildListItem("Necessidades",
+                "Confira suas tarefas de hoje!", Icons.lightbulb_outline),
+          ),
         ],
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.blue,
       bottomNavigationBar: BottomAppBar(
         height: 60,
         color: Colors.blue,
@@ -152,28 +149,36 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 IconButton(
-                  icon: const Icon(Icons.add_circle),
+                  icon: const Icon(Icons.add_circle,
+                      color: Color.fromARGB(255, 233, 229, 229)),
                   onPressed: () => _onItemTapped(0),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.person),
+                  icon: const Icon(
+                    Icons.person,
+                    color: Color.fromARGB(255, 233, 229, 229),
+                  ),
                   onPressed: () => _onItemTapped(1),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.home),
-                  onPressed: () => _onItemTapped(2),
+                  icon: const Icon(
+                    Icons.home,
+                    color: Color.fromARGB(255, 233, 229, 229),
+                  ),
+                  onPressed: () {
+                    navigateToPage(context, const MyHomePage());
+                  },
                 ),
                 IconButton(
-                  icon: const Icon(Icons.settings),
+                  icon: const Icon(Icons.settings,
+                      color: Color.fromARGB(255, 233, 229, 229)),
                   onPressed: () => _onItemTapped(3),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.notifications),
+                  icon: const Icon(Icons.notifications,
+                      color: Color.fromARGB(255, 233, 229, 229)),
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const AlertasFraseando()));
+                    navigateToPage(context, const AlertasFraseando());
                   },
                 ),
               ],

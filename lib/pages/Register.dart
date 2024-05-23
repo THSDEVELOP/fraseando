@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:fraseando/components/decorationRegister.dart';
 import 'package:fraseando/components/snackbar.dart';
 import 'package:fraseando/pages/mainPage.dart';
-
 import '../servicos/autentication.dart';
 import 'pageLogin.dart';
 
@@ -31,8 +30,27 @@ class _RegisterState extends State<Register> {
 
   final AutenticacaoServico _autentServico = AutenticacaoServico();
 
+  bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      body: _isLoading ? _buildLoading() : _buildCrudForm(),
+    );
+  }
+
+  Widget _buildLoading() {
+    return Center(
+      child: Image.asset(
+        'assets/babywhale.gif',
+        width: 600.0,
+        height: 240.0,
+        fit: BoxFit.cover,
+      ), // Se preferir, substitua pelo widget da sua imagem de carregamento
+    );
+  }
+
+  Widget _buildCrudForm() {
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -224,6 +242,9 @@ class _RegisterState extends State<Register> {
   }
 
   botaoCadastrarClicado() {
+    setState(() {
+      _isLoading = true;
+    });
     String nome = _nomeController.text;
     String email = _emailController.text;
     String senha = _senhaController.text;
@@ -235,18 +256,19 @@ class _RegisterState extends State<Register> {
           //voltou com erro
           mostrarSnackbar(context: context, texto: erro);
         } else {
+          setState(() {
+            _isLoading = false;
+          });
           //parece que deu bom
           mostrarSnackbar(
             context: context,
             texto: "Agora você faz parte do Fraseando, seja bem vindo",
             isErro: false,
           );
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MyHomePage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const MyHomePage()));
         }
       });
-    } else {
-      print("Form Inválido");
-    }
+    } else {}
   }
 }
