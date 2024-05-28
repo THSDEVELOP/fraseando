@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fraseando/pages/pageLogin.dart';
 import 'package:fraseando/pages/subPages/Necessidades.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:email_validator/email_validator.dart';
 
 import '../components/navigateToPage.dart';
 import '../servicos/autentication.dart';
