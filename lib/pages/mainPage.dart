@@ -3,12 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:fraseando/pages/pageLogin.dart';
 import 'package:fraseando/pages/subPages/Necessidades.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:email_validator/email_validator.dart';
 
 import '../components/navigateToPage.dart';
 import '../servicos/autentication.dart';
+import '../settings/settingsMain.dart';
 import 'subPages/alertas.dart';
+import 'subPages/tarefas.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -127,8 +127,13 @@ class _MyHomePageState extends State<MyHomePage> {
           _buildListItem("Emoções", "Como você está se sentindo hoje?",
               Icons.sentiment_satisfied),
           const SizedBox(height: 20),
-          _buildListItem(
-              "Tarefas", "Confira suas tarefas de hoje!", Icons.done),
+          InkWell(
+            onTap: () {
+              navigateToPage(context, const Tarefas());
+            },
+            child: _buildListItem(
+                "Tarefas", "Confira suas tarefas de hoje!", Icons.done),
+          ),
           const SizedBox(height: 20),
           InkWell(
             onTap: () {
@@ -173,7 +178,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 IconButton(
                   icon: const Icon(Icons.settings,
                       color: Color.fromARGB(255, 233, 229, 229)),
-                  onPressed: () => _onItemTapped(3),
+                  onPressed: () {
+                    navigateToPage(context, SettingsScreen());
+                  },
                 ),
                 IconButton(
                   icon: const Icon(Icons.notifications,
