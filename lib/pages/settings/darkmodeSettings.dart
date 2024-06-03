@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DarkModeSettings extends StatefulWidget {
+  const DarkModeSettings({super.key});
+
   @override
   _DarkModeSettingsState createState() => _DarkModeSettingsState();
 }
@@ -14,13 +16,13 @@ class _DarkModeSettingsState extends State<DarkModeSettings> {
       appBar: AppBar(
         backgroundColor:
             Colors.blue, // Cor da barra superior igual à tela anterior
-        title: Text(
+        title: const Text(
           'Modo Escuro',
           style: TextStyle(color: Colors.white), // Cor do texto branco
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -37,19 +39,19 @@ class _DarkModeSettingsState extends State<DarkModeSettings> {
                 color: Colors.black.withOpacity(0.2),
                 spreadRadius: 1,
                 blurRadius: 4,
-                offset: Offset(0, 2),
+                offset: const Offset(0, 2),
               ),
             ],
           ),
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: Container(
                     color: Colors.transparent, // Cor de fundo transparente
-                    child: Text(
+                    child: const Text(
                       'Modo Escuro',
                       style: TextStyle(
                           fontSize: 18, color: Colors.white), // Texto branco

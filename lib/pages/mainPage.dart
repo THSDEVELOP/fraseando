@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fraseando/pages/subPages/Necessidades.dart';
 import '../components/customAppBar.dart';
 import '../components/customDrawer.dart';
+import '../components/custom_bottom_appbar.dart';
 import '../components/navigateToPage.dart';
-import '../settings/settingsMain.dart';
-import 'subPages/alertas.dart';
 import 'subPages/tarefas.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -15,14 +14,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
   bool _isExpanded = false;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   void _toggleExpand() {
     setState(() {
@@ -118,55 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       backgroundColor: Colors.blue,
-      bottomNavigationBar: BottomAppBar(
-        height: 60,
-        color: Colors.blue,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.add_circle,
-                      color: Color.fromARGB(255, 233, 229, 229)),
-                  onPressed: () => _onItemTapped(0),
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.person,
-                    color: Color.fromARGB(255, 233, 229, 229),
-                  ),
-                  onPressed: () => _onItemTapped(1),
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.home,
-                    color: Color.fromARGB(255, 233, 229, 229),
-                  ),
-                  onPressed: () {
-                    navigateToPage(context, const MyHomePage());
-                  },
-                ),
-                IconButton(
-                  icon: const Icon(Icons.settings,
-                      color: Color.fromARGB(255, 233, 229, 229)),
-                  onPressed: () {
-                    navigateToPage(context, SettingsScreen());
-                  },
-                ),
-                IconButton(
-                  icon: const Icon(Icons.notifications,
-                      color: Color.fromARGB(255, 233, 229, 229)),
-                  onPressed: () {
-                    navigateToPage(context, const AlertasFraseando());
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: const CustomBottomAppBar(),
     );
   }
 }

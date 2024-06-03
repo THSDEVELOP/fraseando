@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../components/customAppBar.dart';
 import '../../components/customDrawer.dart';
+import '../../components/custom_bottom_appbar.dart';
 
 class AlertasFraseando extends StatefulWidget {
   const AlertasFraseando({super.key});
@@ -18,8 +19,9 @@ class _AlertasFraseandoState extends State<AlertasFraseando> {
       drawer: const CustomDrawer(),
       body: Container(
         color: Colors.white,
-        child: Text("Pagina de alerta"),
+        child: const Text("Pagina de alerta"),
       ),
+      bottomNavigationBar: const CustomBottomAppBar(),
     );
   }
 }

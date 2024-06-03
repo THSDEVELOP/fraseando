@@ -4,11 +4,7 @@ import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:fraseando/components/customAppBar.dart';
 import 'package:fraseando/components/customDrawer.dart';
 import 'package:fraseando/components/navigateToPage.dart';
-import 'package:fraseando/components/custom_clip_rrect.dart';
-import '../../../servicos/autentication.dart';
 import '../../mainPage.dart';
-import '../../pageLogin.dart';
-import '../Necessidades.dart';
 import '../alertas.dart';
 
 class ComidasPage extends StatefulWidget {
@@ -149,11 +145,11 @@ class CustomClipRRect extends StatelessWidget {
   final String text;
 
   const CustomClipRRect({
-    Key? key,
+    super.key,
     required this.icon,
     required this.onPressed,
     required this.text,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

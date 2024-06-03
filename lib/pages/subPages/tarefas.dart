@@ -65,7 +65,7 @@ class _HomePageState extends State<Tarefas> {
         drawer: const CustomDrawer(),
         floatingActionButton: FloatingActionButton(
           onPressed: creatNewTask,
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
         body: ListView.builder(
             itemCount: toDoList.length,

@@ -24,8 +24,8 @@ class ToDoTile extends StatelessWidget {
             background: Container(
               color: Colors.red,
               alignment: Alignment.centerRight,
-              padding: EdgeInsets.only(right: 20.0),
-              child: Icon(Icons.delete, color: Colors.white),
+              padding: const EdgeInsets.only(right: 20.0),
+              child: const Icon(Icons.delete, color: Colors.white),
             ),
             onDismissed: (direction) {
               if (direction == DismissDirection.endToStart) {
@@ -33,7 +33,11 @@ class ToDoTile extends StatelessWidget {
               }
             },
             child: Container(
-              padding: EdgeInsets.all(24),
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: Colors.blue[100],
+                borderRadius: BorderRadius.circular(12),
+              ),
               child: Row(
                 children: [
                   //CheckBox
@@ -50,10 +54,6 @@ class ToDoTile extends StatelessWidget {
                             : TextDecoration.none,
                       )),
                 ],
-              ),
-              decoration: BoxDecoration(
-                color: Colors.blue[100],
-                borderRadius: BorderRadius.circular(12),
               ),
             )));
   }

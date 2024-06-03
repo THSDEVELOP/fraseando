@@ -6,19 +6,19 @@ class CustomClipRRect extends StatelessWidget {
   final String text;
 
   const CustomClipRRect({
-    Key? key,
+    super.key,
     required this.icon,
     required this.onPressed,
     required this.text,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: Container(
-        height: 250,
-        width: 250,
+        height: 200,
+        width: 200,
         color: Colors.grey[200],
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -26,7 +26,7 @@ class CustomClipRRect extends StatelessWidget {
             IconButton(
               icon: Icon(
                 icon,
-                size: 150,
+                size: 130,
                 color: Colors.black,
               ),
               onPressed: onPressed,

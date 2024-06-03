@@ -13,7 +13,7 @@ import '../servicos/autentication.dart';
 import 'register.dart';
 
 class PageLogin extends StatefulWidget {
-  const PageLogin({Key? key}) : super(key: key);
+  const PageLogin({super.key});
 
   @override
   State<PageLogin> createState() => _PageLoginState();

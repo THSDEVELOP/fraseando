@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'classSentings.dart';
 
 class LanguageRegionSettings extends StatefulWidget {
+  const LanguageRegionSettings({super.key});
+
   @override
   _LanguageRegionSettingsState createState() => _LanguageRegionSettingsState();
 }
@@ -22,7 +24,7 @@ class _LanguageRegionSettingsState extends State<LanguageRegionSettings> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Configurações de Idioma e Região',
+        title: const Text('Configurações de Idioma e Região',
             style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.blue.shade300,
       ),
@@ -54,7 +56,7 @@ class _LanguageRegionSettingsState extends State<LanguageRegionSettings> {
                         color: Colors.black.withOpacity(0.2),
                         spreadRadius: 1,
                         blurRadius: 4,
-                        offset: Offset(0, 2),
+                        offset: const Offset(0, 2),
                       ),
                     ],
                   ),
@@ -83,11 +85,11 @@ class _LanguageRegionSettingsState extends State<LanguageRegionSettings> {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value,
-                                  style: TextStyle(color: Colors.white)),
+                                  style: const TextStyle(color: Colors.white)),
                             );
                           }).toList(),
-                          icon:
-                              Icon(Icons.arrow_drop_down, color: Colors.white),
+                          icon: const Icon(Icons.arrow_drop_down,
+                              color: Colors.white),
                         ),
                       ],
                     ),
@@ -107,7 +109,7 @@ class _LanguageRegionSettingsState extends State<LanguageRegionSettings> {
                         color: Colors.black.withOpacity(0.2),
                         spreadRadius: 1,
                         blurRadius: 4,
-                        offset: Offset(0, 2),
+                        offset: const Offset(0, 2),
                       ),
                     ],
                   ),
@@ -136,11 +138,11 @@ class _LanguageRegionSettingsState extends State<LanguageRegionSettings> {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value,
-                                  style: TextStyle(color: Colors.white)),
+                                  style: const TextStyle(color: Colors.white)),
                             );
                           }).toList(),
-                          icon:
-                              Icon(Icons.arrow_drop_down, color: Colors.white),
+                          icon: const Icon(Icons.arrow_drop_down,
+                              color: Colors.white),
                         ),
                       ],
                     ),

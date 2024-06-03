@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'classSentings.dart';
 
 class FontSettings extends StatefulWidget {
+  const FontSettings({super.key});
+
   @override
   _FontSettingsState createState() => _FontSettingsState();
 }
@@ -23,7 +25,7 @@ class _FontSettingsState extends State<FontSettings> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ajuste de Tamanho da Fonte'),
+        title: const Text('Ajuste de Tamanho da Fonte'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -3,13 +3,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 import 'package:fraseando/components/customAppBar.dart';
 import 'package:fraseando/components/customDrawer.dart';
-import 'package:fraseando/components/navigateToPage.dart';
-import 'package:fraseando/components/custom_clip_rrect.dart';
-import '../../../servicos/autentication.dart';
-import '../../mainPage.dart';
-import '../../pageLogin.dart';
-import '../Necessidades.dart';
-import '../alertas.dart';
+import '../../../components/custom_bottom_appbar.dart';
 
 class ComidasPage extends StatefulWidget {
   const ComidasPage({super.key});
@@ -50,96 +44,47 @@ class _ComidasPageState extends State<ComidasPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
-      drawer: const CustomDrawer(),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 20),
-              Wrap(
-                spacing: 20,
-                runSpacing: 20,
-                children: [
-                  CustomClipRRect(
-                    icon: Icons.fastfood,
-                    onPressed: () => _playAudio(0),
-                    text: "Hamburguer",
-                  ),
-                  CustomClipRRect(
-                    icon: Icons.local_drink,
-                    onPressed: () => _playAudio(1),
-                    text: "Água",
-                  ),
-                  CustomClipRRect(
-                    icon: Icons.cake,
-                    onPressed: () => _playAudio(2),
-                    text: "Bolo",
-                  ),
-                  CustomClipRRect(
-                    icon: Icons.local_pizza,
-                    onPressed: () => _playAudio(3),
-                    text: "Pizza",
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-            ],
-          ),
-        ),
-      ),
-      backgroundColor: Colors.blue,
-      bottomNavigationBar: BottomAppBar(
-        height: 60,
-        color: Colors.blue,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.add_circle,
-                      color: Color.fromARGB(255, 233, 229, 229)),
-                  onPressed: () {
-                    navigateToPage(context, const AlertasFraseando());
-                  },
+        appBar: const CustomAppBar(),
+        drawer: const CustomDrawer(),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 20),
+                Wrap(
+                  spacing: 20,
+                  runSpacing: 20,
+                  children: [
+                    CustomClipRRect(
+                      icon: Icons.fastfood,
+                      onPressed: () => _playAudio(0),
+                      text: "Hamburguer",
+                    ),
+                    CustomClipRRect(
+                      icon: Icons.local_drink,
+                      onPressed: () => _playAudio(1),
+                      text: "Água",
+                    ),
+                    CustomClipRRect(
+                      icon: Icons.cake,
+                      onPressed: () => _playAudio(2),
+                      text: "Bolo",
+                    ),
+                    CustomClipRRect(
+                      icon: Icons.local_pizza,
+                      onPressed: () => _playAudio(3),
+                      text: "Pizza",
+                    ),
+                  ],
                 ),
-                IconButton(
-                  icon: const Icon(Icons.person,
-                      color: Color.fromARGB(255, 233, 229, 229)),
-                  onPressed: () {
-                    navigateToPage(context, const AlertasFraseando());
-                  },
-                ),
-                IconButton(
-                  icon: const Icon(Icons.home,
-                      color: Color.fromARGB(255, 233, 229, 229)),
-                  onPressed: () {
-                    navigateToPage(context, const MyHomePage());
-                  },
-                ),
-                IconButton(
-                  icon: const Icon(Icons.settings,
-                      color: Color.fromARGB(255, 233, 229, 229)),
-                  onPressed: () {
-                    navigateToPage(context, const AlertasFraseando());
-                  },
-                ),
-                IconButton(
-                  icon: const Icon(Icons.notifications,
-                      color: Color.fromARGB(255, 233, 229, 229)),
-                  onPressed: () {
-                    navigateToPage(context, const AlertasFraseando());
-                  },
-                ),
+                const SizedBox(height: 8),
               ],
             ),
-          ],
+          ),
         ),
-      ),
-    );
+        backgroundColor: Colors.blue,
+        bottomNavigationBar: const CustomBottomAppBar());
   }
 }
 
@@ -149,11 +94,11 @@ class CustomClipRRect extends StatelessWidget {
   final String text;
 
   const CustomClipRRect({
-    Key? key,
+    super.key,
     required this.icon,
     required this.onPressed,
     required this.text,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
