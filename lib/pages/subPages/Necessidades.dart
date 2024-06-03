@@ -5,6 +5,8 @@ import 'package:fraseando/pages/pageLogin.dart';
 import 'package:fraseando/pages/subPages/alertas.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../components/customAppBar.dart';
+import '../../components/customDrawer.dart';
 import '../../components/navigateToPage.dart';
 import '../../servicos/autentication.dart';
 import '../mainPage.dart';
@@ -93,33 +95,8 @@ class _NecessidadesPageState extends State<NecessidadesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60.0),
-        child: AppBar(
-          backgroundColor: Colors.blue,
-          iconTheme: const IconThemeData(color: Colors.white),
-        ),
-      ),
-      drawer: Drawer(
-        width: 200,
-        backgroundColor: Colors.blue,
-        child: ListView(
-          children: [
-            ListTile(
-              leading: const Icon(Icons.logout, color: Colors.white),
-              title: const Text(
-                "Sair",
-                style: TextStyle(color: Colors.white),
-              ),
-              onTap: () {
-                AutenticacaoServico().deslogar();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const PageLogin()));
-              },
-            )
-          ],
-        ),
-      ),
+      appBar: const CustomAppBar(),
+      drawer: const CustomDrawer(),
       body: ListView(
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,

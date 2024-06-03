@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../components/customAppBar.dart';
+import '../../components/customDrawer.dart';
 import 'dialog_box.dart';
 import 'todotile.dart';
 
@@ -59,10 +61,8 @@ class _HomePageState extends State<Tarefas> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.blue,
-        appBar: AppBar(
-          title: Text('Tarefas'),
-          elevation: 0,
-        ),
+        appBar: const CustomAppBar(),
+        drawer: const CustomDrawer(),
         floatingActionButton: FloatingActionButton(
           onPressed: creatNewTask,
           child: Icon(Icons.add),
