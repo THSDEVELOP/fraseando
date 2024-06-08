@@ -5,6 +5,7 @@ import 'package:fraseando/pages/mainPage.dart';
 import 'package:fraseando/components/navigateToPage.dart';
 
 import '../pages/settings/settingsMain.dart';
+import '../pages/subPages/functionsPage/mainContact.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
   const CustomBottomAppBar({super.key});
@@ -52,7 +53,7 @@ class CustomBottomAppBar extends StatelessWidget {
                 icon: const Icon(Icons.notifications,
                     color: Color.fromARGB(255, 233, 229, 229)),
                 onPressed: () {
-                  navigateToPage(context, const AlertasFraseando());
+                  navigateToPage(context, Chamada());
                 },
               ),
             ],
