@@ -17,7 +17,7 @@ class _HomePageState extends State<Tarefas> {
   final _controller = TextEditingController();
 
   List toDoList = [
-    ["Faça um tutorial", false],
+    ["Faça um tutorial", false],  
     ["Faça um exercicio", false],
   ];
 

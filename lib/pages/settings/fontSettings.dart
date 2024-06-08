@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../components/customAppBar.dart';
 import 'classSentings.dart';
 
 class FontSettings extends StatefulWidget {
@@ -24,9 +25,7 @@ class _FontSettingsState extends State<FontSettings> {
     SizeConfig.init(context); // Inicializando a classe SizeConfig
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Ajuste de Tamanho da Fonte'),
-      ),
+      appBar: const CustomAppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

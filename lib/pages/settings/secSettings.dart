@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../components/customAppBar.dart';
 import 'classSentings.dart';
 
 class SecConfig extends StatelessWidget {
@@ -8,27 +9,7 @@ class SecConfig extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor:
-            Colors.blue.shade300, // Cor da barra superior igual à tela anterior
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: const Row(
-          children: [
-            Text(
-              'Segurança',
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors
-                      .white), // Tamanho da fonte ajustado para 20 e texto branco
-            ),
-          ],
-        ),
-      ),
+      appBar: const CustomAppBar(),
       body: Stack(
         children: <Widget>[
           Container(

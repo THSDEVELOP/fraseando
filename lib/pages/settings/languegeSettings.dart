@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../components/customAppBar.dart';
 import 'classSentings.dart';
 
 class LanguageRegionSettings extends StatefulWidget {
@@ -23,11 +24,7 @@ class _LanguageRegionSettingsState extends State<LanguageRegionSettings> {
     double containerHeight = MediaQuery.of(context).size.height * 0.1;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Configurações de Idioma e Região',
-            style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.blue.shade300,
-      ),
+      appBar: const CustomAppBar(),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(

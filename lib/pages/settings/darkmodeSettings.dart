@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../components/customAppBar.dart';
+
 class DarkModeSettings extends StatefulWidget {
   const DarkModeSettings({super.key});
 
@@ -13,14 +15,7 @@ class _DarkModeSettingsState extends State<DarkModeSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor:
-            Colors.blue, // Cor da barra superior igual à tela anterior
-        title: const Text(
-          'Modo Escuro',
-          style: TextStyle(color: Colors.white), // Cor do texto branco
-        ),
-      ),
+      appBar: const CustomAppBar(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
         child: Container(

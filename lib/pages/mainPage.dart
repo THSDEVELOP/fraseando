@@ -4,6 +4,7 @@ import '../components/customAppBar.dart';
 import '../components/customDrawer.dart';
 import '../components/custom_bottom_appbar.dart';
 import '../components/navigateToPage.dart';
+import 'settings/classSentings.dart';
 import 'subPages/tarefas.dart';
 
 class MyHomePage extends StatefulWidget {

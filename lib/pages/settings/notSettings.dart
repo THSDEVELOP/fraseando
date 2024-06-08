@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../components/customAppBar.dart';
+
 class NotificationSettings extends StatefulWidget {
   const NotificationSettings({super.key});
 
@@ -15,13 +17,7 @@ class _NotificationSettingsState extends State<NotificationSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue.shade300,
-        title: const Text(
-          'Configurações de Notificações',
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
+      appBar: const CustomAppBar(),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
